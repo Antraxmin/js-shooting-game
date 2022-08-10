@@ -23,6 +23,19 @@ function loadImage() {
     backgroundImage.src = "img/background.jpg";
 }
 
+let keyDown = {}        // pressed key name
+
+function setupKeyboardListener() {
+    document.addEventListener("keydown", function(event) {
+        keyDown[event.key] = true;
+        console.log("value", keyDown);
+    });
+    document.addEventListener("keyup", function(event) {
+        delete keyDown[event.key];
+        console.log("after pressed", keyDown);
+    })
+}
+
 // 이미지를 캔버스에 보여주는 함수
 function render() {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -35,4 +48,5 @@ function main() {
 }
 
 loadImage();
+setupKeyboardListener();
 main();
